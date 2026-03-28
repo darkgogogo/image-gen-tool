@@ -1,14 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 配图生成器</title>
+<title>AI 内容工具</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f7f6f3;--surface:#fff;--border:#e8e4dc;--border2:#d4cfc5;
+  --bg:#f7f6f3;--surface:#fff;--border:#e8e4dc;
   --text:#1a1814;--text2:#6b6560;--text3:#9c9590;
   --accent:#2563eb;--accent-l:#eff6ff;--accent-b:#bfdbfe;
   --green:#16a34a;--green-l:#f0fdf4;--green-b:#bbf7d0;
@@ -16,51 +17,65 @@
   --amber:#b45309;--amber-l:#fffbeb;--amber-b:#fcd34d;
   --purple:#6d28d9;--purple-l:#f5f3ff;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 48px}
-.app{max-width:720px;margin:0 auto}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px}
+.app{max-width:740px;margin:0 auto}
 
 /* Header */
-.header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
 .logo{width:36px;height:36px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0}
 .header h1{font-size:17px;font-weight:600;letter-spacing:-.3px}
 .header p{font-size:12px;color:var(--text2);margin-top:2px}
 
+/* Tab nav */
+.tab-nav{display:flex;gap:4px;margin-bottom:24px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px}
+.tab-btn{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:none;border:none;border-radius:7px;padding:8px 12px;cursor:pointer;color:var(--text2);transition:all .15s}
+.tab-btn.active{background:var(--accent);color:#fff}
+.tab-btn:not(.active):hover{background:var(--bg);color:var(--text)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
 /* Cards */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .section-label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
-
-/* Step badges */
 .step-badge{display:inline-flex;align-items:center;gap:7px;margin-bottom:12px}
 .step-num{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-title{font-size:13px;font-weight:600}
 
-/* API key */
+/* Inputs */
+.field-label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px}
+.text-input{display:block;width:100%;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);outline:none;transition:border-color .15s;margin-bottom:10px}
+.text-input:focus{border-color:var(--accent)}
+.text-input::placeholder{color:#c0bbb5}
 .api-input{display:block;width:100%;font-family:'DM Mono',monospace;font-size:13px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:11px 13px;color:var(--text);outline:none;transition:border-color .15s;margin-bottom:10px}
 .api-input:focus{border-color:var(--accent)}
 .api-input::placeholder{color:#c0bbb5}
+.big-textarea{display:block;width:100%;font-family:'DM Mono',monospace;font-size:12px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:12px;color:var(--text);outline:none;transition:border-color .15s;resize:vertical;min-height:140px;line-height:1.6}
+.big-textarea:focus{border-color:var(--accent)}
+.big-textarea::placeholder{color:#c0bbb5}
+.md-textarea{display:block;width:100%;font-family:'DM Mono',monospace;font-size:12px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:12px;color:var(--text);outline:none;transition:border-color .15s;resize:vertical;min-height:200px;line-height:1.7}
+.md-textarea:focus{border-color:var(--accent)}
+.md-textarea::placeholder{color:#c0bbb5}
+
+/* Buttons */
 .btn-primary{display:block;width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px;cursor:pointer;transition:opacity .15s}
 .btn-primary:hover{opacity:.88}
+.btn-success-full{display:block;width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px;cursor:pointer;transition:opacity .15s}
+.btn-success-full:hover{opacity:.88}
+.btn-load{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 20px;cursor:pointer;transition:opacity .15s;margin-top:10px}
+.btn-load:hover{opacity:.88}
 .api-saved-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .api-saved-info{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--green)}
 .btn-reset{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text2);background:none;border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;transition:all .15s;flex-shrink:0}
 .btn-reset:hover{border-color:var(--red);color:var(--red)}
 .api-hint{margin-top:9px;font-size:12px;color:var(--text2);line-height:1.6}
 .api-hint a{color:var(--accent)}
-
-/* JSON input */
-.json-textarea{display:block;width:100%;font-family:'DM Mono',monospace;font-size:12px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:12px;color:var(--text);outline:none;transition:border-color .15s;resize:vertical;min-height:120px;line-height:1.6}
-.json-textarea:focus{border-color:var(--accent)}
-.json-textarea::placeholder{color:#c0bbb5}
+.hint{margin-top:8px;font-size:12px;color:var(--text2);line-height:1.6}
+.hint code{font-family:'DM Mono',monospace;background:var(--bg);border:1px solid var(--border);padding:1px 5px;border-radius:3px;font-size:11px}
 .json-error{margin-top:8px;font-size:12px;color:var(--red);display:none}
-.json-hint{margin-top:8px;font-size:12px;color:var(--text2);line-height:1.6}
-.btn-load{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 20px;cursor:pointer;transition:opacity .15s;margin-top:10px}
-.btn-load:hover{opacity:.88}
+.reset-link{font-size:12px;color:var(--text3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;display:inline-block;margin-top:10px}
+.reset-link:hover{color:var(--text2)}
 
-/* Article info */
-.article-title{font-size:15px;font-weight:600;line-height:1.45;margin-bottom:7px}
-.article-desc{font-size:13px;color:var(--text2);line-height:1.65}
-
-/* Controls */
+/* Controls row */
 .controls-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
 .controls-left h2{font-size:14px;font-weight:600;margin-bottom:4px}
 .progress-info{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
@@ -83,8 +98,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .desc-table td{font-size:12px;padding:3px 0;vertical-align:top}
 .desc-table td:first-child{color:var(--text2);white-space:nowrap;padding-right:10px;width:70px}
 .desc-table td:last-child{color:var(--text);line-height:1.45}
-.prompt-en-label{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.prompt-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin-top:6px;line-height:1.5;word-break:break-word}
+.prompt-label{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;margin-top:8px}
+.prompt-box{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px 10px;line-height:1.5;word-break:break-word}
 .card-body{padding:14px 16px}
 
 /* Image states */
@@ -93,19 +108,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .img-placeholder{background:var(--bg);border:1.5px dashed var(--border);color:var(--text2)}
 .img-loading{background:linear-gradient(90deg,#f0eee9 25%,#e8e5df 50%,#f0eee9 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;color:var(--text2)}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.img-error{background:var(--red-l);border:1px solid var(--red-b);color:var(--red);padding:12px;text-align:center}
+.img-error{background:var(--red-l);border:1px solid var(--red-b);color:var(--red);padding:12px;text-align:center;gap:4px}
 .img-result{display:block;width:100%;border-radius:8px}
-
-/* Card actions */
 .card-actions{display:flex;align-items:center;gap:8px;margin-top:11px;flex-wrap:wrap}
 .spacer{flex:1}
-.btn-gen{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--accent-l);color:var(--accent);border:1px solid var(--accent-b);border-radius:6px;padding:7px 14px;cursor:pointer;transition:background .15s;white-space:nowrap}
+.btn-gen{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--accent-l);color:var(--accent);border:1px solid var(--accent-b);border-radius:6px;padding:7px 14px;cursor:pointer;white-space:nowrap}
 .btn-gen:hover{background:#dbeafe}
 .btn-gen:disabled{opacity:.4;cursor:default}
-.btn-regen{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--amber-l);color:var(--amber);border:1px solid var(--amber-b);border-radius:6px;padding:7px 14px;cursor:pointer;transition:background .15s;white-space:nowrap}
+.btn-regen{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--amber-l);color:var(--amber);border:1px solid var(--amber-b);border-radius:6px;padding:7px 14px;cursor:pointer;white-space:nowrap}
 .btn-regen:hover{background:#fef3c7}
 .btn-regen:disabled{opacity:.4;cursor:default}
-.btn-dl-single{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--green-l);color:var(--green);border:1px solid var(--green-b);border-radius:6px;padding:7px 14px;cursor:pointer;transition:background .15s;white-space:nowrap}
+.btn-dl-single{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--green-l);color:var(--green);border:1px solid var(--green-b);border-radius:6px;padding:7px 14px;cursor:pointer;white-space:nowrap}
 .btn-dl-single:hover{background:#dcfce7}
 
 /* Dots */
@@ -115,52 +128,100 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .dot-loading{background:var(--accent);animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* Empty state */
-.empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
-.empty-state-icon{font-size:32px;margin-bottom:12px;opacity:.4}
-.empty-state p{font-size:13px;line-height:1.6}
-
-/* Reset link */
-.reset-link{font-size:12px;color:var(--text3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;display:inline-block;margin-top:12px}
-.reset-link:hover{color:var(--text2)}
+/* Article info */
+.article-title{font-size:15px;font-weight:600;line-height:1.45;margin-bottom:6px}
+.article-desc{font-size:13px;color:var(--text2);line-height:1.65}
 </style>
 </head>
 <body>
-<div class="app" id="app"></div>
-<script>
-const STORAGE_KEY = "fal_api_key_v1";
+<div class="app">
 
-// ── State ────────────────────────────────────────────────────────────────────
+  <div class="header">
+    <div class="logo">⚡</div>
+    <div>
+      <h1>AI 内容工具</h1>
+      <p>文章下载 · 配图生成</p>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('md')">📄 下载文章 Markdown</button>
+    <button class="tab-btn" onclick="switchTab('img')">🎨 生成配图</button>
+  </div>
+
+  <!-- ── Tab 1: Markdown Download ─────────────────────────────────── -->
+  <div id="tab-md" class="tab-panel active">
+    <div class="card">
+      <div class="step-badge"><span class="step-num">1</span><span class="step-title">粘贴文章内容</span></div>
+      <label class="field-label">文件名（不含扩展名）</label>
+      <input class="text-input" type="text" id="md-filename" placeholder="例：chatgpt-节点选择指南" />
+      <label class="field-label">文章内容（Markdown 格式）</label>
+      <textarea class="md-textarea" id="md-content" placeholder="把 Dify 对话里生成的完整文章内容粘贴到这里（中文版或英文版均可）..."></textarea>
+    </div>
+    <div class="card">
+      <div class="step-badge"><span class="step-num">2</span><span class="step-title">下载文件</span></div>
+      <button class="btn-success-full" onclick="downloadMd()">↓ 下载 Markdown 文件</button>
+      <div class="hint" style="margin-top:10px">下载后可用 Typora、Notion、VS Code 等工具打开编辑</div>
+    </div>
+  </div>
+
+  <!-- ── Tab 2: Image Generator ────────────────────────────────────── -->
+  <div id="tab-img" class="tab-panel">
+    <div id="img-app"></div>
+  </div>
+
+</div>
+
+<script>
+// ── Tab switching ─────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', ['md','img'][i] === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'img') renderImg();
+}
+
+// ── Markdown download ─────────────────────────────────────────────────────────
+function downloadMd() {
+  const content  = document.getElementById('md-content').value.trim();
+  const filename = (document.getElementById('md-filename').value.trim() || 'article') + '.md';
+  if (!content) { alert('请先粘贴文章内容'); return; }
+  const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+}
+
+// ── Image generator ───────────────────────────────────────────────────────────
+const STORAGE_KEY = "fal_api_key_v1";
 let apiKey   = localStorage.getItem(STORAGE_KEY) || "";
 let apiSaved = !!apiKey;
-let article  = null;   // loaded from JSON paste
+let article  = null;
 let states   = {};
 
-// ── API key ──────────────────────────────────────────────────────────────────
 function saveKey() {
   const el = document.getElementById("key-input");
   const v  = el ? el.value.trim() : "";
   if (!v) { alert("请输入 API Key"); return; }
   apiKey = v; apiSaved = true;
   localStorage.setItem(STORAGE_KEY, apiKey);
-  render();
+  renderImg();
 }
 function resetKey() {
   if (!confirm("确认清除已保存的 API Key？")) return;
   apiKey = ""; apiSaved = false;
   localStorage.removeItem(STORAGE_KEY);
-  render();
+  renderImg();
 }
 
-// ── Load JSON ────────────────────────────────────────────────────────────────
 function loadJSON() {
   const el  = document.getElementById("json-input");
   const err = document.getElementById("json-error");
   try {
     const raw = el.value.trim();
-    if (!raw) { showErr(err, "请先粘贴 Claude 输出的配图 JSON"); return; }
+    if (!raw) { showErr(err, "请先粘贴配图 JSON"); return; }
     const data = JSON.parse(raw);
-    // accept either the full object or just the images array
     if (Array.isArray(data)) {
       article = { title: "文章", desc: "", images: data };
     } else if (data.images && Array.isArray(data.images)) {
@@ -168,43 +229,43 @@ function loadJSON() {
     } else {
       showErr(err, "JSON 格式不正确，请确认是 Claude 输出的配图数据"); return;
     }
-    // validate required fields
     for (const img of article.images) {
-      if (!img.id || !img.en) { showErr(err, `图片对象缺少必要字段 (id / en)：${JSON.stringify(img)}`); return; }
+      if (!img.id || !img.en) { showErr(err, `图片对象缺少必要字段 (id / en)`); return; }
     }
     err.style.display = "none";
     states = {};
     article.images.forEach(img => states[img.id] = { status: "idle" });
-    render();
-  } catch(e) {
-    showErr(err, "JSON 解析失败：" + e.message);
-  }
+    renderImg();
+  } catch(e) { showErr(err, "JSON 解析失败：" + e.message); }
 }
 function showErr(el, msg) { el.textContent = msg; el.style.display = "block"; }
-function resetArticle() { article = null; states = {}; render(); }
+function resetArticle() { article = null; states = {}; renderImg(); }
 
-// ── Generation ───────────────────────────────────────────────────────────────
 async function generateImage(id) {
   if (!apiKey) { alert("请先输入并保存 API Key"); return; }
   const img = article.images.find(i => i.id === id);
   if (!img) return;
   states[id] = { status: "loading" };
-  render();
+  renderImg();
   try {
-    const res = await fetch("https://fal.run/fal-ai/flux/schnell", {
+    const res = await fetch("https://fal.run/fal-ai/recraft/v3/text-to-image", {
       method: "POST",
       headers: { "Authorization": `Key ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: img.en, image_size: img.size || "landscape_16_9", num_inference_steps: 4, num_images: 1, enable_safety_checker: true })
+      body: JSON.stringify({
+        prompt: img.en,
+        image_size: img.size || "landscape_16_9",
+        style: img.style || "digital_illustration",
+        num_images: 1,
+        enable_safety_checker: true
+      })
     });
     if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.detail || `HTTP ${res.status}`); }
     const data = await res.json();
     const url  = data.images?.[0]?.url;
     if (!url) throw new Error("未返回图片 URL");
     states[id] = { status: "done", url };
-  } catch(e) {
-    states[id] = { status: "error", error: e.message };
-  }
-  render();
+  } catch(e) { states[id] = { status: "error", error: e.message }; }
+  renderImg();
 }
 
 async function generateAll() {
@@ -213,7 +274,6 @@ async function generateAll() {
   }
 }
 
-// ── Download ─────────────────────────────────────────────────────────────────
 function downloadOne(url, filename) {
   return fetch(url).then(r => r.blob()).then(blob => {
     const a = document.createElement("a");
@@ -229,7 +289,6 @@ async function downloadAll() {
   }
 }
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
 function doneCount()  { return article ? article.images.filter(i => states[i.id].status === "done").length : 0; }
 function anyLoading() { return article ? article.images.some(i  => states[i.id].status === "loading")     : false; }
 
@@ -240,17 +299,15 @@ function descTableHtml(desc) {
 }
 
 function imgArea(img) {
-  const st = states[img.id];
-  const cc = img.type === "cover" ? " cover" : "";
+  const st = states[img.id], cc = img.type === "cover" ? " cover" : "";
   if (st.status === "idle")    return `<div class="img-placeholder${cc}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>等待生成</span></div>`;
-  if (st.status === "loading") return `<div class="img-loading${cc}">生成中，约 5 秒…</div>`;
+  if (st.status === "loading") return `<div class="img-loading${cc}">生成中，约 10～20 秒…</div>`;
   if (st.status === "done")    return `<img class="img-result" src="${st.url}" alt="${img.section || img.id}"/>`;
-  return `<div class="img-error${cc}"><span>⚠ 生成失败</span><span style="font-size:11px;opacity:.8;margin-top:2px">${st.error}</span></div>`;
+  return `<div class="img-error${cc}"><span>⚠ 生成失败</span><span style="font-size:11px;opacity:.8">${st.error}</span></div>`;
 }
 
 function cardActions(img) {
-  const st   = states[img.id];
-  const busy = !apiSaved || anyLoading();
+  const st = states[img.id], busy = !apiSaved || anyLoading();
   if (st.status === "idle" || st.status === "error")
     return `<div class="card-actions"><button class="btn-gen" onclick="generateImage('${img.id}')" ${busy?"disabled":""}>✦ 生成</button></div>`;
   if (st.status === "loading")
@@ -262,18 +319,11 @@ function cardActions(img) {
   </div>`;
 }
 
-// ── Render ────────────────────────────────────────────────────────────────────
-function render() {
-  const done  = doneCount();
-  const total = article ? article.images.length : 0;
+function renderImg() {
+  const done = doneCount(), total = article ? article.images.length : 0;
+  document.getElementById("img-app").innerHTML = `
 
-  document.getElementById("app").innerHTML = `
-    <div class="header">
-      <div class="logo">⚡</div>
-      <div><h1>AI 配图生成器</h1><p>基于 fal.ai FLUX · 粘贴配图 JSON 即可生成</p></div>
-    </div>
-
-    <!-- Step 1: API Key -->
+    <!-- API Key -->
     <div class="card">
       <div class="step-badge"><span class="step-num">1</span><span class="step-title">配置 fal.ai API Key</span></div>
       ${apiSaved ? `
@@ -284,17 +334,17 @@ function render() {
       ` : `
         <input class="api-input" type="password" id="key-input" placeholder="fal_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
         <button class="btn-primary" onclick="saveKey()">确认并保存</button>
-        <div class="api-hint">没有 Key？注册 <a href="https://fal.ai" target="_blank">fal.ai</a> → Dashboard → API Keys 获取，首次充值 $5 可长期使用</div>
+        <div class="api-hint">注册 <a href="https://fal.ai" target="_blank">fal.ai</a> → Dashboard → API Keys 获取，首次充值 $5 可长期使用</div>
       `}
     </div>
 
-    <!-- Step 2: Paste JSON -->
     ${!article ? `
+    <!-- JSON paste -->
     <div class="card">
       <div class="step-badge"><span class="step-num">2</span><span class="step-title">粘贴配图数据</span></div>
-      <textarea class="json-textarea" id="json-input" placeholder='在 Dify 对话里回复「生成配图」后，把 Claude 输出的 JSON 完整复制粘贴到这里...'></textarea>
+      <textarea class="big-textarea" id="json-input" placeholder='在 Dify 对话里回复「生成配图」，把 Claude 输出的 JSON 粘贴到这里...'></textarea>
       <div class="json-error" id="json-error"></div>
-      <div class="json-hint">💡 Claude 会输出一段以 <code style="font-family:DM Mono,monospace;background:var(--bg);padding:1px 5px;border-radius:3px;font-size:11px">{</code> 开头的 JSON，把它完整复制过来即可</div>
+      <div class="hint">💡 Claude 会输出一段以 <code>{</code> 开头的 JSON，完整复制过来即可</div>
       <button class="btn-load" onclick="loadJSON()">载入配图数据 →</button>
     </div>
     ` : `
@@ -306,7 +356,7 @@ function render() {
       <span class="reset-link" onclick="resetArticle()">↩ 更换文章 / 重新粘贴数据</span>
     </div>
 
-    <!-- Step 3: Generate -->
+    <!-- Generate -->
     <div class="controls-row">
       <div class="controls-left">
         <div class="step-badge"><span class="step-num">3</span><span class="step-title">生成配图</span></div>
@@ -328,8 +378,10 @@ function render() {
           <div style="flex:1;min-width:0">
             <div class="card-meta-title">${img.section || img.id}</div>
             ${descTableHtml(img.desc)}
-            <div class="prompt-en-label">AI 生成 Prompt（英文）</div>
-            <div class="prompt-en">${img.en}</div>
+            ${img.style ? `<div style="margin-bottom:6px"><span style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Style</span> <code style="font-family:DM Mono,monospace;font-size:11px;background:var(--bg);padding:2px 6px;border-radius:4px;border:1px solid var(--border)">${img.style}</code></div>` : ""}
+            ${img.desc_zh ? `<div class="prompt-label">中文描述</div><div class="prompt-box">${img.desc_zh}</div>` : ""}
+            <div class="prompt-label">AI 生成 Prompt（英文）</div>
+            <div class="prompt-box">${img.en}</div>
           </div>
         </div>
         <div class="card-body">
@@ -342,7 +394,8 @@ function render() {
   `;
 }
 
-render();
+// Initial render
+renderImg();
 </script>
 </body>
 </html>
