@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -19,13 +18,13 @@
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px 16px 60px}
 .app{max-width:740px;margin:0 auto}
-
+ 
 /* Header */
 .header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
 .logo{width:36px;height:36px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0}
 .header h1{font-size:17px;font-weight:600;letter-spacing:-.3px}
 .header p{font-size:12px;color:var(--text2);margin-top:2px}
-
+ 
 /* Tab nav */
 .tab-nav{display:flex;gap:4px;margin-bottom:24px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px}
 .tab-btn{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:none;border:none;border-radius:7px;padding:8px 12px;cursor:pointer;color:var(--text2);transition:all .15s}
@@ -33,14 +32,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .tab-btn:not(.active):hover{background:var(--bg);color:var(--text)}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
-
+ 
 /* Cards */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .section-label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
 .step-badge{display:inline-flex;align-items:center;gap:7px;margin-bottom:12px}
 .step-num{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-title{font-size:13px;font-weight:600}
-
+ 
 /* Inputs */
 .field-label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px}
 .text-input{display:block;width:100%;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);outline:none;transition:border-color .15s;margin-bottom:10px}
@@ -55,7 +54,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .md-textarea{display:block;width:100%;font-family:'DM Mono',monospace;font-size:12px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:12px;color:var(--text);outline:none;transition:border-color .15s;resize:vertical;min-height:200px;line-height:1.7}
 .md-textarea:focus{border-color:var(--accent)}
 .md-textarea::placeholder{color:#c0bbb5}
-
+ 
 /* Buttons */
 .btn-primary{display:block;width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px;cursor:pointer;transition:opacity .15s}
 .btn-primary:hover{opacity:.88}
@@ -74,7 +73,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .json-error{margin-top:8px;font-size:12px;color:var(--red);display:none}
 .reset-link{font-size:12px;color:var(--text3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;display:inline-block;margin-top:10px}
 .reset-link:hover{color:var(--text2)}
-
+ 
 /* Controls row */
 .controls-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
 .controls-left h2{font-size:14px;font-weight:600;margin-bottom:4px}
@@ -86,7 +85,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-success-solid{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:var(--green);color:#fff;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;transition:opacity .15s;white-space:nowrap}
 .btn-success-solid:hover{opacity:.85}
 .btn-success-solid:disabled{opacity:.35;cursor:default}
-
+ 
 /* Image cards */
 .image-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .card-header{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border)}
@@ -101,7 +100,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .prompt-label{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;margin-top:8px}
 .prompt-box{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px 10px;line-height:1.5;word-break:break-word}
 .card-body{padding:14px 16px}
-
+ 
 /* Image states */
 .img-placeholder,.img-loading,.img-error{border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;aspect-ratio:16/9}
 .img-placeholder.cover,.img-loading.cover,.img-error.cover{aspect-ratio:4/3}
@@ -120,22 +119,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-regen:disabled{opacity:.4;cursor:default}
 .btn-dl-single{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;background:var(--green-l);color:var(--green);border:1px solid var(--green-b);border-radius:6px;padding:7px 14px;cursor:pointer;white-space:nowrap}
 .btn-dl-single:hover{background:#dcfce7}
-
+ 
 /* Dots */
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
 .dot-idle{background:#d1d5db}
 .dot-done{background:var(--green)}
 .dot-loading{background:var(--accent);animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
+ 
 /* Article info */
 .article-title{font-size:15px;font-weight:600;line-height:1.45;margin-bottom:6px}
 .article-desc{font-size:13px;color:var(--text2);line-height:1.65}
+ 
+/* Style selector */
+.style-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.style-chip{flex:1;min-width:120px;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;transition:all .15s;background:var(--surface2)}
+.style-chip:hover{border-color:var(--accent);background:var(--accent-l)}
+.style-chip.selected{border-color:var(--accent);background:var(--accent-l)}
+.style-chip-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.style-chip.selected .style-chip-name{color:var(--accent)}
+.style-chip-desc{font-size:11px;color:var(--text2);line-height:1.4}
 </style>
 </head>
 <body>
 <div class="app">
-
+ 
   <div class="header">
     <div class="logo">⚡</div>
     <div>
@@ -143,12 +151,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <p>文章下载 · 配图生成</p>
     </div>
   </div>
-
+ 
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('md')">📄 下载文章 Markdown</button>
     <button class="tab-btn" onclick="switchTab('img')">🎨 生成配图</button>
   </div>
-
+ 
   <!-- ── Tab 1: Markdown Download ─────────────────────────────────── -->
   <div id="tab-md" class="tab-panel active">
     <div class="card">
@@ -164,14 +172,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="hint" style="margin-top:10px">下载后可用 Typora、Notion、VS Code 等工具打开编辑</div>
     </div>
   </div>
-
+ 
   <!-- ── Tab 2: Image Generator ────────────────────────────────────── -->
   <div id="tab-img" class="tab-panel">
     <div id="img-app"></div>
   </div>
-
+ 
 </div>
-
+ 
 <script>
 // ── Tab switching ─────────────────────────────────────────────────────────────
 function switchTab(name) {
@@ -180,7 +188,7 @@ function switchTab(name) {
   document.getElementById('tab-' + name).classList.add('active');
   if (name === 'img') renderImg();
 }
-
+ 
 // ── Markdown download ─────────────────────────────────────────────────────────
 function downloadMd() {
   const content  = document.getElementById('md-content').value.trim();
@@ -192,14 +200,28 @@ function downloadMd() {
   a.download = filename;
   a.click();
 }
-
+ 
 // ── Image generator ───────────────────────────────────────────────────────────
 const STORAGE_KEY = "fal_api_key_v1";
-let apiKey   = localStorage.getItem(STORAGE_KEY) || "";
-let apiSaved = !!apiKey;
-let article  = null;
-let states   = {};
-
+ 
+// Recraft V3 style options — all using the same model (Recraft V3), unified per article
+const STYLES = [
+  { value: "digital_illustration",               label: "数字插画",     desc: "现代清晰，科技/科普类首选" },
+  { value: "digital_illustration/2d_art_poster", label: "2D 海报",     desc: "版式感强，封面/品牌视觉" },
+  { value: "digital_illustration/hand_drawn",    label: "手绘插画",     desc: "温暖亲切，场景/故事类" },
+  { value: "digital_illustration/grain",         label: "颗粒质感",     desc: "层次丰富，深度叙事类" },
+  { value: "digital_illustration/hand_drawn_outline", label: "手绘线稿", desc: "轻盈简洁，概念草图感" },
+  { value: "vector_illustration/line_art",       label: "线条矢量",     desc: "精准简洁，流程/示意图" },
+  { value: "vector_illustration/line_circuit",   label: "电路线条",     desc: "科技感强，适合网络/技术类" },
+  { value: "realistic_image/natural_light",      label: "自然光写实",   desc: "真实感强，场景氛围类" },
+];
+ 
+let apiKey    = localStorage.getItem(STORAGE_KEY) || "";
+let apiSaved  = !!apiKey;
+let article   = null;
+let states    = {};
+let activeStyle = "digital_illustration"; // article-level style, shared by all images
+ 
 function saveKey() {
   const el = document.getElementById("key-input");
   const v  = el ? el.value.trim() : "";
@@ -214,7 +236,7 @@ function resetKey() {
   localStorage.removeItem(STORAGE_KEY);
   renderImg();
 }
-
+ 
 function loadJSON() {
   const el  = document.getElementById("json-input");
   const err = document.getElementById("json-error");
@@ -232,6 +254,8 @@ function loadJSON() {
     for (const img of article.images) {
       if (!img.id || !img.en) { showErr(err, `图片对象缺少必要字段 (id / en)`); return; }
     }
+    // Use article-level style if provided, otherwise keep current selection
+    if (article.style) activeStyle = article.style;
     err.style.display = "none";
     states = {};
     article.images.forEach(img => states[img.id] = { status: "idle" });
@@ -240,7 +264,18 @@ function loadJSON() {
 }
 function showErr(el, msg) { el.textContent = msg; el.style.display = "block"; }
 function resetArticle() { article = null; states = {}; renderImg(); }
-
+ 
+function setStyle(val) {
+  activeStyle = val;
+  // Reset all generated images so user can regenerate with new style
+  if (article) {
+    const hasDone = article.images.some(i => states[i.id].status === "done");
+    if (hasDone && !confirm("切换风格后已生成的图片需要重新生成，确认切换吗？")) return;
+    article.images.forEach(img => { if (states[img.id].status === "done") states[img.id] = { status: "idle" }; });
+  }
+  renderImg();
+}
+ 
 async function generateImage(id) {
   if (!apiKey) { alert("请先输入并保存 API Key"); return; }
   const img = article.images.find(i => i.id === id);
@@ -254,7 +289,7 @@ async function generateImage(id) {
       body: JSON.stringify({
         prompt: img.en,
         image_size: img.size || "landscape_16_9",
-        style: img.style || "digital_illustration",
+        style: activeStyle,   // always use article-level style
         num_images: 1,
         enable_safety_checker: true
       })
@@ -267,13 +302,13 @@ async function generateImage(id) {
   } catch(e) { states[id] = { status: "error", error: e.message }; }
   renderImg();
 }
-
+ 
 async function generateAll() {
   for (const img of article.images) {
     if (states[img.id].status !== "done") await generateImage(img.id);
   }
 }
-
+ 
 function downloadOne(url, filename) {
   return fetch(url).then(r => r.blob()).then(blob => {
     const a = document.createElement("a");
@@ -288,16 +323,16 @@ async function downloadAll() {
     await new Promise(r => setTimeout(r, 400));
   }
 }
-
+ 
 function doneCount()  { return article ? article.images.filter(i => states[i.id].status === "done").length : 0; }
 function anyLoading() { return article ? article.images.some(i  => states[i.id].status === "loading")     : false; }
-
+ 
 function descTableHtml(desc) {
   if (!desc || typeof desc !== "object") return "";
   return `<table class="desc-table">${Object.entries(desc).map(([k,v]) =>
     `<tr><td>${k}</td><td>${v}</td></tr>`).join("")}</table>`;
 }
-
+ 
 function imgArea(img) {
   const st = states[img.id], cc = img.type === "cover" ? " cover" : "";
   if (st.status === "idle")    return `<div class="img-placeholder${cc}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>等待生成</span></div>`;
@@ -305,7 +340,7 @@ function imgArea(img) {
   if (st.status === "done")    return `<img class="img-result" src="${st.url}" alt="${img.section || img.id}"/>`;
   return `<div class="img-error${cc}"><span>⚠ 生成失败</span><span style="font-size:11px;opacity:.8">${st.error}</span></div>`;
 }
-
+ 
 function cardActions(img) {
   const st = states[img.id], busy = !apiSaved || anyLoading();
   if (st.status === "idle" || st.status === "error")
@@ -318,11 +353,26 @@ function cardActions(img) {
     <button class="btn-dl-single" onclick="downloadOne('${st.url}','${(img.section||img.id)}.jpg')">↓ 下载此图</button>
   </div>`;
 }
-
+ 
 function renderImg() {
   const done = doneCount(), total = article ? article.images.length : 0;
+  const styleSelectorHtml = `
+    <div class="card">
+      <div class="step-badge"><span class="step-num">${article ? "2" : "3"}</span><span class="step-title">选择配图风格（全文统一）</span></div>
+      <div class="style-grid">
+        ${STYLES.map(s => `
+          <div class="style-chip ${activeStyle === s.value ? "selected" : ""}" onclick="setStyle('${s.value}')">
+            <div class="style-chip-name">${s.label}</div>
+            <div class="style-chip-desc">${s.desc}</div>
+          </div>
+        `).join("")}
+      </div>
+      <div class="hint">⚠ Recraft V3 · 同一风格应用到本文所有配图，确保视觉一致性。切换风格后需重新生成。</div>
+    </div>
+  `;
+ 
   document.getElementById("img-app").innerHTML = `
-
+ 
     <!-- API Key -->
     <div class="card">
       <div class="step-badge"><span class="step-num">1</span><span class="step-title">配置 fal.ai API Key</span></div>
@@ -337,17 +387,23 @@ function renderImg() {
         <div class="api-hint">注册 <a href="https://fal.ai" target="_blank">fal.ai</a> → Dashboard → API Keys 获取，首次充值 $5 可长期使用</div>
       `}
     </div>
-
+ 
     ${!article ? `
     <!-- JSON paste -->
     <div class="card">
       <div class="step-badge"><span class="step-num">2</span><span class="step-title">粘贴配图数据</span></div>
-      <textarea class="big-textarea" id="json-input" placeholder='在 Dify 对话里回复「生成配图」，把 Claude 输出的 JSON 粘贴到这里...'></textarea>
+      <textarea class="big-textarea" id="json-input" placeholder='在对话里回复「生成配图」，把 Claude 输出的 JSON 粘贴到这里...'></textarea>
       <div class="json-error" id="json-error"></div>
       <div class="hint">💡 Claude 会输出一段以 <code>{</code> 开头的 JSON，完整复制过来即可</div>
       <button class="btn-load" onclick="loadJSON()">载入配图数据 →</button>
     </div>
+ 
+    ${styleSelectorHtml}
+ 
     ` : `
+ 
+    ${styleSelectorHtml}
+ 
     <!-- Article info -->
     <div class="card">
       <div class="section-label">当前文章</div>
@@ -355,11 +411,11 @@ function renderImg() {
       ${article.desc ? `<div class="article-desc">${article.desc}</div>` : ""}
       <span class="reset-link" onclick="resetArticle()">↩ 更换文章 / 重新粘贴数据</span>
     </div>
-
+ 
     <!-- Generate -->
     <div class="controls-row">
       <div class="controls-left">
-        <div class="step-badge"><span class="step-num">3</span><span class="step-title">生成配图</span></div>
+        <div class="step-badge"><span class="step-num">4</span><span class="step-title">生成配图</span></div>
         <div class="progress-info">
           <span class="dot ${anyLoading()?"dot-loading":done===total&&total>0?"dot-done":"dot-idle"}"></span>
           ${done} / ${total} 已完成
@@ -370,7 +426,7 @@ function renderImg() {
         <button class="btn-dark" onclick="generateAll()" ${!apiSaved||anyLoading()?"disabled":""}>⚡ 全部生成</button>
       </div>
     </div>
-
+ 
     ${article.images.map(img => `
       <div class="image-card">
         <div class="card-header">
@@ -378,8 +434,6 @@ function renderImg() {
           <div style="flex:1;min-width:0">
             <div class="card-meta-title">${img.section || img.id}</div>
             ${descTableHtml(img.desc)}
-            ${img.style ? `<div style="margin-bottom:6px"><span style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Style</span> <code style="font-family:DM Mono,monospace;font-size:11px;background:var(--bg);padding:2px 6px;border-radius:4px;border:1px solid var(--border)">${img.style}</code></div>` : ""}
-            ${img.desc_zh ? `<div class="prompt-label">中文描述</div><div class="prompt-box">${img.desc_zh}</div>` : ""}
             <div class="prompt-label">AI 生成 Prompt（英文）</div>
             <div class="prompt-box">${img.en}</div>
           </div>
@@ -393,7 +447,7 @@ function renderImg() {
     `}
   `;
 }
-
+ 
 // Initial render
 renderImg();
 </script>
